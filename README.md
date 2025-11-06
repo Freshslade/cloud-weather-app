@@ -1,77 +1,25 @@
-\# 🌦 Multi-Cloud Weather Tracking Website (Terraform | AWS + Azure)
+````markdown
+# 🌦 Multi-Cloud Weather Tracker (Terraform • AWS + Azure)
 
+In this project, I learned to deploy a **multi-cloud static website** with **AWS (S3 + CloudFront + Route 53)** and **Azure (Storage Static Website)**, all provisioned via **Terraform**. The goal was to understand how **DNS, CDN, HTTPS, and failover** fit together end-to-end.
 
-
-In this project, I learned to deploy a multi-cloud static website across AWS (S3 + CloudFront + Route 53)and Azure (Storage Static Website) — all provisioned via Terraform. The goal was to understand how DNS, CDN, HTTPS, and failover actually fit together.
-
-
-
-> Acknowledgment: Architecture inspired by Lucy Wang (Tech With Lucy). I implemented it myself to internalize multi-cloud DNS routing, static hosting, CloudFront, and Terraform.
-
-
+> **Acknowledgment:** Architecture inspired by Lucy Wang (TechWithLucy). I implemented and debugged it myself to internalize the “why” behind each component.
 
 ---
 
+## 🧭 Architecture Overview
 
+Here is a diagram of the architecture, showing the user request path from Route 53, through CloudFront, to the S3 origin.
 
-\## 🧭 Architecture Overview
+![](./screenshots/project-diagram.png)
 
-
-
-AWS S3 – primary static hosting  
-
-CloudFront – CDN + HTTPS termination in front of S3  
-
-Route 53 – DNS (apex alias + www CNAME) and health checks  
-
-Azure Storage Static Website – disaster-recovery fallback  
-
-Terraform – IaC for both clouds (one `main.tf`)
-
-
-
-!\[Project Diagram](./screenshots/project-diagram.png)
-
-
+* **AWS S3** — host static site (HTML/CSS/JS/assets)  
+* **CloudFront** — CDN + HTTPS in front of S3  
+* **Route 53** — DNS (apex alias → CloudFront, `www` CNAME → CloudFront)  
+* **Azure Storage Static Website** — DR/failover endpoint  
+* **Terraform** — single source of truth for provisioning
 
 ---
-
-
-
-\## 🗂 Repository Layout
-
-multi-cloud-weather-tracker/
-
-├── main.tf
-
-├── website/
-
-│ ├── index.html
-
-│ ├── styles.css
-
-│ ├── script.js
-
-│ └── assets/...
-
-└── screenshots/
-
-├── project-diagram.png
-
-├── terraform-apply.png
-
-├── cloudfront-distribution.png
-
-├── route53-records.png
-
-├── azure-static-website.png
-
-├── website-live-1.png
-
-└── website-live-2.png
-
----
-
 
 ## ⚙️ Terraform: How I Provisioned Everything
 
@@ -191,6 +139,3 @@ curl -I [https://sladesanctuary.com](https://sladesanctuary.com)
 ```
 
 *(Local project path: `C:\Users\Slade\multi-cloud-weather-tracker`)*
-
-
-
