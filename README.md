@@ -192,14 +192,5 @@ curl -I [https://sladesanctuary.com](https://sladesanctuary.com)
 
 *(Local project path: `C:\Users\Slade\multi-cloud-weather-tracker`)*
 
-```
-
-***
-
-**Important Note for Images:** For the images to display correctly, you **must** ensure you have committed and pushed the image files to your GitHub repository in the exact path specified: `./screenshots/`.
-
-Would you like me to generate any other sections for your README, like a 'Future Improvements' or 'Prerequisites' section?
-```
-
 
 
