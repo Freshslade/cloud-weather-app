@@ -1,7 +1,9 @@
-````markdown
+
 # 🌦 Multi-Cloud Weather Tracker (Terraform • AWS + Azure)
 
 In this project, I learned to deploy a **multi-cloud static website** with **AWS (S3 + CloudFront + Route 53)** and **Azure (Storage Static Website)**, all provisioned via **Terraform**. The goal was to understand how **DNS, CDN, HTTPS, and failover** fit together end-to-end.
+
+
 
 > **Acknowledgment:** Architecture inspired by Lucy Wang (TechWithLucy). I implemented and debugged it myself to internalize the “why” behind each component.
 
@@ -43,6 +45,10 @@ terraform apply
 ### S3 Static Website
 
 Configured with `aws_s3_bucket_website_configuration` (new style). I uploaded `index.html`, `styles.css`, `script.js`, and all assets/ with proper MIME types.
+<img width="959" height="471" alt="website-live-1" src="https://github.com/user-attachments/assets/67d7bbb3-4eee-4a08-95b7-241da203f71e" />
+
+<img width="958" height="473" alt="website-live-2" src="https://github.com/user-attachments/assets/3ecd2e25-221e-4352-a605-371794fae23b" />
+
 
 ### CloudFront in Front of S3
 
@@ -53,6 +59,8 @@ Key fix I learned: **S3 website endpoints are HTTP-only.**
 If CloudFront tries HTTPS → S3 website endpoint, you’ll see **504 Gateway Timeout**.
 **Solution:** set the origin to the S3 website endpoint and **Origin Protocol Policy = HTTP Only**.
 *(Viewers still get HTTPS from CloudFront.)*
+<img width="959" height="395" alt="cloudfront-distribution" src="https://github.com/user-attachments/assets/ee8896e5-fdca-4b3b-8a9a-4432252f1d69" />
+
 
 -----
 
@@ -68,6 +76,7 @@ What finally clicked — **Alias vs CNAME**:
   * A **CNAME** cannot live at the **apex (root)** of a zone. That’s DNS spec.
   * AWS provides **Alias A records** that behave like CNAMEs but are valid at the apex and resolve to AWS targets (CloudFront, etc.).
   * So: `@` → **Alias A** to CloudFront; `www` → **CNAME** to CloudFront.
+<img width="953" height="404" alt="route53-records" src="https://github.com/user-attachments/assets/cf5fecde-a96f-4eaf-adeb-7aab64f17c00" />
 
 -----
 
@@ -79,6 +88,7 @@ The public endpoint looks like:
 `https://<storage-account>.z13.web.core.windows.net/`
 
 Small lesson: Azure “static website” is just the `$web` container exposed via a web endpoint—simple and effective for DR.
+<img width="959" height="469" alt="azure-static-website" src="https://github.com/user-attachments/assets/66d639bb-e6c0-4c4c-84a3-6827d61e71cb" />
 
 -----
 
@@ -139,12 +149,3 @@ curl -I [https://sladesanctuary.com](https://sladesanctuary.com)
 ```
 
 *(Local project path: `C:\Users\Slade\multi-cloud-weather-tracker`)*
-
-```
-
-***
-
-Now, you should be all set! Once you commit and push this `README.md`, all the images will display properly.
-
-Let me know if you need any other content added to your README!
-```
