@@ -11,7 +11,7 @@ In this project, I learned to deploy a **multi-cloud static website** with **AWS
 
 Here is a diagram of the architecture, showing the user request path from Route 53, through CloudFront, to the S3 origin.
 
-![](./screenshots/project-diagram.png)
+![](https://github.com/Freshslade/cloud-weather-app/blob/main/screenshots/project-diagram.png?raw=true)
 
 * **AWS S3** — host static site (HTML/CSS/JS/assets)  
 * **CloudFront** — CDN + HTTPS in front of S3  
@@ -25,7 +25,7 @@ Here is a diagram of the architecture, showing the user request path from Route 
 
 I kept infra in one `main.tf` and deployed with the standard flow.
 
-![](./screenshots/terraform-apply.png)
+![](https://github.com/Freshslade/cloud-weather-app/blob/main/screenshots/terraform-apply.png?raw=true)
 
 ```bash
 terraform init
@@ -139,3 +139,12 @@ curl -I [https://sladesanctuary.com](https://sladesanctuary.com)
 ```
 
 *(Local project path: `C:\Users\Slade\multi-cloud-weather-tracker`)*
+
+```
+
+***
+
+Now, you should be all set! Once you commit and push this `README.md`, all the images will display properly.
+
+Let me know if you need any other content added to your README!
+```
